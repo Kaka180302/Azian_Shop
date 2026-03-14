@@ -175,9 +175,6 @@
                         170.1 419.1 149.8 406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3L201.3 297.3z"/></svg>
                     </button>
 
-                    <!-- 
-                    
-                     -->
                 </div>
 
                 <div class="product_list">
@@ -295,6 +292,7 @@
 
                     <input
                     type="text"
+                    name="name"
                     class="order__input"
                     id="customerName"
                     placeholder="Họ và tên"
@@ -303,6 +301,7 @@
 
                     <input
                     type="email"
+                    name="email"
                     class="order__input"
                     id="customerEmail"
                     placeholder="Email"
@@ -310,7 +309,8 @@
                     >
 
                     <input
-                    type="tel"
+                    type="text"
+                    name="phone"
                     class="order__input"
                     id="customerPhone"
                     placeholder="Số điện thoại"
@@ -319,6 +319,7 @@
 
                     <input
                     type="text"
+                    name="address"
                     class="order__input"
                     id="customerAddress"
                     placeholder="Địa chỉ"
@@ -343,7 +344,7 @@
                     <span id="orderTotal">0</span>₫
 
                 </div>
-
+                <input type="hidden" name="total" id="orderTotalInput">
 
       <!-- payment -->
 
@@ -357,7 +358,7 @@
 
 
             <div class="order__qr" id="qrBox">
-                <img src="QR_LINK_CUA_CONG_TY">
+                <img src="/assets/img/QR_cty.jpg">
             </div>
 
 
@@ -368,6 +369,7 @@
   </div>
 
 </div>
+<div id="toastContainer" class="toast-container"></div>
     <!-- Script JS -->
     <script src="script.js"></script>
 </body>

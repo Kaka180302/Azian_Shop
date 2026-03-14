@@ -167,6 +167,7 @@ function addProduct(name = "", price = 0){
 
     <input
       type="number"
+      name = "qty"
       class="order__qty"
       value="1"
       min="1"
@@ -246,6 +247,7 @@ function updateTotal(){
   })
 
     totalEl.innerText = total.toLocaleString()
+    document.getElementById("orderTotalInput").value = total
 
 }
 
@@ -265,6 +267,7 @@ paymentMethod.onchange = ()=>{
 }
 
 // **********Validate*********************
+
 function validatePhone(phone){
 
   const regex = /^(0[3|5|7|8|9])[0-9]{8}$/
@@ -273,26 +276,6 @@ function validatePhone(phone){
 
 }
 
-document
-.getElementById("orderForm")
-.addEventListener("submit",(e)=>{
-
-  e.preventDefault()
-
-  const phone =
-  document.getElementById("customerPhone").value
-
-  if(!validatePhone(phone)){
-
-  alert("Số điện thoại không hợp lệ")
-
-  return
-
-  }
-
-  alert("Đặt hàng thành công!")
-
-})
 
 const submitBtn = document.getElementById("orderSubmit")
 const customerPhone = document.getElementById("customerPhone")
@@ -325,5 +308,83 @@ function checkForm(){
 inputs.forEach(input=>{
 
   input.addEventListener("input",checkForm)
+
+})
+
+// ***********Notification***********************
+
+function showToast(message,type="success"){
+
+  const container = document.getElementById("toastContainer")
+
+  const toast = document.createElement("div")
+
+  toast.className = "toast " + type
+
+  toast.textContent = message
+
+  container.appendChild(toast)
+
+  setTimeout(()=>{
+    toast.remove()
+  },5000)
+
+}
+
+// ******************Form_Submit*****************
+
+const scriptURL = "https://script.google.com/macros/s/AKfycbyP3eKvA3WXH794kwN6WPSaMToi7cuxqTxS_qN-FHKF1MjCgiHzkFhkNfAoUjRb5UKYoA/exec"
+const form = document.getElementById("orderForm")
+
+form.addEventListener("submit", function(e){
+
+  e.preventDefault()
+  submitBtn.classList.add("loading")
+  submitBtn.textContent = "Đang gửi..."
+
+  let productList = []
+
+  document.querySelectorAll(".order__productRow").forEach(row=>{
+
+    const select = row.querySelector("select")
+    const productName = select.options[select.selectedIndex].text
+
+    const qty = row.querySelector(".order__qty").value
+
+    if(productName){
+      productList.push(productName + " x" + qty)
+    }
+
+  })
+
+  const products = productList.join(", \n")
+
+  const formData = new FormData()
+
+  formData.append("name", document.getElementById("customerName").value)
+  formData.append("email", document.getElementById("customerEmail").value)
+  formData.append("phone", document.getElementById("customerPhone").value)
+  formData.append("address", document.getElementById("customerAddress").value)
+  formData.append("product", products)
+  formData.append("total", document.getElementById("orderTotalInput").value)
+
+  fetch(scriptURL,{
+    method:"POST",
+    body: formData
+  })
+  .then(res=>{
+    showToast(
+      "✔ Đặt hàng thành công!\nHoa Xinh cảm ơn bạn đã tin tưởng. \nNhân viên sẽ liên hệ xác nhận đơn hàng sớm nhất.",
+      "success"
+    )
+    submitBtn.classList.remove("loading")
+    submitBtn.textContent = "Đặt hàng"
+    closeOrder()
+  })
+  .catch(err=>{
+    showToast("❌ Lỗi gửi đơn!","error")
+    submitBtn.classList.remove("loading")
+    submitBtn.textContent = "Đặt hàng"
+  })
 
 })
