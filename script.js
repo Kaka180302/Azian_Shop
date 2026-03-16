@@ -90,7 +90,7 @@ setInterval(()=>{
 
 const orderPopup = document.getElementById("order")
 const closeBtn = document.querySelector(".order__close")
-const productBtns = document.querySelectorAll(".product_buyBtn")
+const productBtns = document.querySelectorAll(".product_buyBtn, .product_hoverBtn")
 
 const productBox = document.getElementById("orderProducts")
 const addProductBtn = document.getElementById("addProduct")
@@ -313,27 +313,16 @@ inputs.forEach(input=>{
 
 // ***********Notification***********************
 
-function showToast(message,type="success"){
+const successPopup = document.getElementById("successPopup")
+const successOk = document.getElementById("successOk")
 
-  const container = document.getElementById("toastContainer")
-
-  const toast = document.createElement("div")
-
-  toast.className = "toast " + type
-
-  toast.textContent = message
-
-  container.appendChild(toast)
-
-  setTimeout(()=>{
-    toast.remove()
-  },5000)
-
+successOk.onclick = ()=>{
+  successPopup.classList.remove("active")
 }
 
 // ******************Form_Submit*****************
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbyP3eKvA3WXH794kwN6WPSaMToi7cuxqTxS_qN-FHKF1MjCgiHzkFhkNfAoUjRb5UKYoA/exec"
+const scriptURL = "https://script.google.com/macros/s/AKfycbwVu5IVL7XQ6xIWIQ4Dr9TVsRMb8EmrRajragAOk_RmF2dYwyrP57qdqO2dXVMIw09f7Q/exec"
 const form = document.getElementById("orderForm")
 
 form.addEventListener("submit", function(e){
@@ -373,18 +362,23 @@ form.addEventListener("submit", function(e){
     body: formData
   })
   .then(res=>{
-    showToast(
-      "✔ Đặt hàng thành công!\nHoa Xinh cảm ơn bạn đã tin tưởng. \nNhân viên sẽ liên hệ xác nhận đơn hàng sớm nhất.",
-      "success"
-    )
+    successPopup.classList.add("active")
     submitBtn.classList.remove("loading")
     submitBtn.textContent = "Đặt hàng"
     closeOrder()
   })
-  .catch(err=>{
-    showToast("❌ Lỗi gửi đơn!","error")
-    submitBtn.classList.remove("loading")
-    submitBtn.textContent = "Đặt hàng"
-  })
+.catch(err=>{
+    successPopup.querySelector("p").innerText =
+    "❌ Gửi đơn thất bại. Vui lòng thử lại."
 
+    successPopup.classList.add("active")
+})
+})
+
+// Menu mobile
+const menuToggle = document.getElementById("menuToggle")
+const navMenu = document.querySelector(".header_nav")
+
+menuToggle.addEventListener("click",()=>{
+  navMenu.classList.toggle("active")
 })
