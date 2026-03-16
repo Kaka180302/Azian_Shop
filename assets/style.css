@@ -743,11 +743,11 @@ input{
     }
 
     .product_button--prev{
-        left:-60px;
+        left:-17.5%;
     }
 
     .product_button--next{
-        right:-60px;
+        right:-17.5%;
     }
 
     .product_list{
