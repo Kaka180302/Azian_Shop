@@ -333,7 +333,7 @@ function showToast(message,type="success"){
 
 // ******************Form_Submit*****************
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbyP3eKvA3WXH794kwN6WPSaMToi7cuxqTxS_qN-FHKF1MjCgiHzkFhkNfAoUjRb5UKYoA/exec"
+const scriptURL = "https://script.google.com/macros/s/AKfycbxBQbLCnEWgNQTxhKMiC85FsnUOdoNet7WadzijfZ71dod0opVizI96rIKp5t_zMyq2mQ/exec"
 const form = document.getElementById("orderForm")
 
 form.addEventListener("submit", function(e){
