@@ -397,35 +397,37 @@ document.addEventListener("click", (e) => {
 
 })
 
-// **********Đóng mở ảnh*******************
+// **********Đóng_mở_ảnh*******************
 
-const productsMobile = document.querySelectorAll(".product_listItem--img")
+const productImgs = document.querySelectorAll(".product_listItem--img");
+const popups = document.querySelectorAll(".product_popup");
+const closeBtns = document.querySelectorAll(".popup_close");
 
-const preview = document.getElementById("productPreview")
-const previewImg = document.getElementById("previewImg")
-const closeBtnImgMobile = document.getElementById("previewClose")
+productImgs.forEach(img => {
+    img.addEventListener("click", () => {
 
-productsMobile.forEach(product => {
+        const popupId = img.dataset.popup;
+        const popup = document.getElementById(popupId);
 
-    const img = product.querySelector("img")
+        popup.classList.add("active");
 
-    product.addEventListener("click", () => {
+    });
+});
 
-        previewImg.src = product.src
-        preview.classList.add("activeImg")
 
-    })
+closeBtns.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+        btn.closest(".product_popup").classList.remove("active");
+    });
+});
 
-})
 
-closeBtnImgMobile.addEventListener("click", () => {
-    preview.classList.remove("activeImg")
-})
+popups.forEach(popup=>{
+    popup.addEventListener("click", (e)=>{
 
-preview.addEventListener("click", (e) => {
+        if(e.target === popup){
+            popup.classList.remove("active");
+        }
 
-    if(e.target === preview){
-        preview.classList.remove("activeImg")
-    }
-
-})
+    });
+});
