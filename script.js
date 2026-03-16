@@ -90,7 +90,7 @@ setInterval(()=>{
 
 const orderPopup = document.getElementById("order")
 const closeBtn = document.querySelector(".order__close")
-const productBtns = document.querySelectorAll(".product_buyBtn, .product_hoverBtn")
+const productBtns = document.querySelectorAll(".product_buyBtn, .product_hoverBtn, .product_buyBtn--detail")
 
 const productBox = document.getElementById("orderProducts")
 const addProductBtn = document.getElementById("addProduct")
@@ -399,7 +399,7 @@ document.addEventListener("click", (e) => {
 
 // **********Đóng_mở_ảnh*******************
 
-const productImgs = document.querySelectorAll(".product_listItem--img");
+const productImgs = document.querySelectorAll(".product_listItem--img, .product_listItem--title");
 const popups = document.querySelectorAll(".product_popup");
 const closeBtns = document.querySelectorAll(".popup_close");
 
@@ -431,3 +431,12 @@ popups.forEach(popup=>{
 
     });
 });
+
+const closeDetail = document.querySelectorAll(".product_buyBtn--detail");
+
+closeDetail.forEach(close =>{
+  close.addEventListener("click", () => {
+      close.closest(".product_popup").classList.remove("active")
+    })
+
+})

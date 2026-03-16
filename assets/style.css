@@ -739,7 +739,7 @@ input{
     }
 
     .products_container{
-        width: 80%;
+        width: 100%;
     }
 
     .product_button--prev{
@@ -940,7 +940,7 @@ input{
 }
 
 .products_item--imgMobile{
-    width:90%;
+    width:100%;
     max-width:500px;
     border-radius:12px;
 }
@@ -973,8 +973,8 @@ input{
 
 .product_popup .popup_close{
     position: absolute;
-    top: 5%;
-    right: 5%;
+    top: 6%;
+    right: 7.5%;
     background: white;
     border: none;
     width: 32px;
@@ -989,13 +989,12 @@ input{
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
-    border-radius: 14px;
     padding: 20px;
 }
 
 .products_item--imgMobile{
     width: 100%;
-    border-radius: 10px;
+    border-radius: 32px 32px 0 0;
 }
 
 .popup_content--title{
@@ -1022,6 +1021,30 @@ input{
 
 .popup_content li{
     margin-bottom: 6px;
+}
+
+.product_buyBtn--detail{
+    width: 100%;
+    height: auto;
+    padding: 16px;
+    background-color: var(--main-color);
+    color: white;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0 32px 32px;
+}
+
+.product_buyBtn--detail:hover{
+    background-color: var(--footer-color);
+}
+
+.popup_product--cost{
+    font-size: 2rem;
+    margin-top: 16px;
+    text-align: end;
+    font-weight: 800;
 }
 
 /* CERTIFICATE */
@@ -1071,8 +1094,8 @@ input{
 }
 
 .order__qr img{
-        width:80%;
-        height: auto;
+    width:80%;
+    height: auto;
 }
 
 .order__select{
