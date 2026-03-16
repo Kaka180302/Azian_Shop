@@ -322,7 +322,7 @@ successOk.onclick = ()=>{
 
 // ******************Form_Submit*****************
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbxBQbLCnEWgNQTxhKMiC85FsnUOdoNet7WadzijfZ71dod0opVizI96rIKp5t_zMyq2mQ/exec"
+const scriptURL = "https://script.google.com/macros/s/AKfycbxVhfntysgKI7tfH1As8I3yMkWqeQ86pocVbuNp9Kh2lhlBlnoXqXDpjEQnyjKwBwla_w/exec"
 const form = document.getElementById("orderForm")
 
 form.addEventListener("submit", function(e){
