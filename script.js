@@ -157,11 +157,11 @@ function addProduct(name = "", price = 0){
 
       <option value="">--Chọn sản phẩm--</option>
 
-      <option data-price="24000">Mặt nạ chống lão hoá</option>
+      <option data-price="24000">Mặt nạ chống lão hoá - 24,000đ</option>
 
-      <option data-price="350000">Miếng tẩy trang</option>
+      <option data-price="350000">Miếng tẩy trang - 350,000đ</option>
 
-      <option data-price="400000">Kem chống nắng</option>
+      <option data-price="400000">Kem chống nắng - 400,000đ</option>
 
     </select>
 
@@ -322,7 +322,7 @@ successOk.onclick = ()=>{
 
 // ******************Form_Submit*****************
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbxVhfntysgKI7tfH1As8I3yMkWqeQ86pocVbuNp9Kh2lhlBlnoXqXDpjEQnyjKwBwla_w/exec"
+const scriptURL = "https://script.google.com/macros/s/AKfycbwyfYY74OBj1p6BJf1wuOBOrOZV1s7GpReEhP4RbGSiymqGRn4fc2XcOM0ZZJCVp_rzNg/exec"
 const form = document.getElementById("orderForm")
 
 form.addEventListener("submit", function(e){
@@ -331,22 +331,28 @@ form.addEventListener("submit", function(e){
   submitBtn.classList.add("loading")
   submitBtn.textContent = "Đang gửi..."
 
-  let productList = []
+let productList = []
 
-  document.querySelectorAll(".order__productRow").forEach(row=>{
+document.querySelectorAll(".order__productRow").forEach(row=>{
 
-    const select = row.querySelector("select")
-    const productName = select.options[select.selectedIndex].text
+  const select = row.querySelector("select")
+  const productName = select.options[select.selectedIndex].text.split(" - ")[0]
 
-    const qty = row.querySelector(".order__qty").value
+  const price = select.options[select.selectedIndex].dataset.price
+  const qty = row.querySelector(".order__qty").value
 
-    if(productName){
-      productList.push(productName + " x" + qty)
-    }
+  const subtotal = price * qty
 
+  productList.push({
+    name: productName,
+    price: price,
+    qty: qty,
+    subtotal: subtotal
   })
 
-  const products = productList.join(", \n")
+})
+
+const products = JSON.stringify(productList)
 
   const formData = new FormData()
 

@@ -552,7 +552,7 @@ input{
 }
 
 .order__select{
-    width: 150%;
+    width: 700px;
     padding:8px;
     border-radius:6px;
     border:1px solid #eee;
@@ -1012,7 +1012,6 @@ input{
 .popup_content--title{
     font-size: 1.6rem;
     font-weight: 700;
-    margin-bottom: 10px;
 }
 
 .popup_content--subTitle{
@@ -1053,10 +1052,10 @@ input{
 }
 
 .popup_product--cost{
-    font-size: 2rem;
-    margin-top: 16px;
+    font-size: 1.6rem;
     text-align: end;
-    font-weight: 800;
+    font-weight: 700;
+    color: var(--main-color);
 }
 
 /* CERTIFICATE */
