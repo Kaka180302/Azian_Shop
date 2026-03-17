@@ -478,6 +478,16 @@ img{
 .line_height{
     line-height: 300%;
 }
+
+.footer_about--link{
+    text-decoration: none;
+    display: block;
+    color: white;
+}
+
+.footer_about--link:hover{
+    color: #f6c96b;
+}
 /* End footer */
 
 /* Form popup */
